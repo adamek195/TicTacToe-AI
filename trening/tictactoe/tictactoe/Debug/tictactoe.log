@@ -1,22 +1,23 @@
 ﻿  tictactoe.cpp
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(15,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(36,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(38,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(53,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(56,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(68,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(81,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(84,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(96,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(108,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(128,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(171,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(173,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(193,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(195,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(223,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(225,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(256,13): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(256,52): warning C4018: '<=': signed/unsigned mismatch
-  LINK : C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\Debug\tictactoe.exe not found or not built by the last incremental link; performing full link
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(18,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(20,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(45,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(47,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(64,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(67,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(79,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(92,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(95,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(107,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(119,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(142,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(188,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(190,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(216,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(218,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(252,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(254,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(287,13): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(287,52): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\tictactoe\tictactoe.cpp(346,32): warning C4390: ';': empty controlled statement found; is this the intent?
   tictactoe.vcxproj -> C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\trening\tictactoe\Debug\tictactoe.exe

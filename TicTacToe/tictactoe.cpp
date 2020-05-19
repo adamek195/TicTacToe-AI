@@ -165,14 +165,20 @@ int check(std::vector<std::vector<char>>& board)
 //implementacja funkcji minimax, bierze pod uwage
 //wszystkie mozliwe sposoby, w jakie moze przebiegac gra i zwraca wartosc planszy
 int minimax(std::vector<std::vector<char>>& board, int depth, bool isMax, int alpha, int beta)
-{
+{   
+    //zeby skrocic czas obliczen komputera
+    if(depth == 7)
+        return 0;
+
     int score = check(board);
     //jesli gracz wygral gre,zwroc jego oczekiwany wynik
     if (score == 10)
         return score;
+
     //jesli ai wygralo gre zwroc jej oczekiwany wynik    
     if (score == -10)
         return score;
+
     //jesli nie ma zwyciezcy i nie ma ruchow jest remis
     if (isMovesLeft(board) == false)
         return 0;
@@ -240,7 +246,7 @@ int minimax(std::vector<std::vector<char>>& board, int depth, bool isMax, int al
 //znajdowanie najlepszej drogi dla przez ai
 Move findBestMove(std::vector<std::vector<char>>& board)
 {
-    int bestVal = -1000;
+    int bestVal = MAX;
     Move bestMove;
     bestMove.row = -1;
     bestMove.col = -1;
@@ -255,11 +261,11 @@ Move findBestMove(std::vector<std::vector<char>>& board)
             {
                 board[i][j] = 'o';
                 //liczy funkcje oceny dla tego ruchu
-                int moveVal = minimax(board, 0, true, MIN,MAX);
+                int moveVal = minimax(board,0, true, MIN,MAX);
                 //cofnij ruch
                 board[i][j] = 'n';
                 //jesli obecna wartosc jest lepsza niz najlepsza to zaaktualizuj
-                if (moveVal > bestVal)
+                if (moveVal < bestVal)
                 {
                     bestMove.row = i;
                     bestMove.col = j;
@@ -365,7 +371,7 @@ void game(std::vector<std::vector<char>>& board)
 int main()
 {
     //tworzymy tablice do gry w kolko i krzyzyk
-    std::vector<std::vector<char>> board; 
+    std::vector<std::vector<char>> board;
     initalizeBoard(board,3);
     game(board);
     return 0;
