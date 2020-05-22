@@ -40,7 +40,7 @@ public:
 	int minimax(int depth, bool isMax, int alpha, int beta);
 	Move findBestMove();
 	void playerMove(int row,int col);
-	void aiMove();
+	Move aiMove();
 };
 
 

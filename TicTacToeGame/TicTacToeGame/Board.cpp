@@ -300,7 +300,7 @@ void Board::playerMove(int row,int col)
 
 
 //funkcja pozwalajaca wykonac ruch na planszy sztucznej inteligencji
-void Board::aiMove()
+Move Board::aiMove()
 {
     Move bestMove = findBestMove();
     int row = bestMove.row;
@@ -309,4 +309,5 @@ void Board::aiMove()
         this->board[row][col] = 'o';
     else
         std::cout << " te pole jest juz zajete!!!" << std::endl;
+    return bestMove;
 }
