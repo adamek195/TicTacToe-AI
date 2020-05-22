@@ -5,6 +5,7 @@
 #define MAX 1000
 #define MIN -1000
 
+
 //struktura opisujaca ruch ai
 struct Move
 {
@@ -372,7 +373,7 @@ int main()
 {
     //tworzymy tablice do gry w kolko i krzyzyk
     std::vector<std::vector<char>> board;
-    initalizeBoard(board,3);
+    initalizeBoard(board);
     game(board);
     return 0;
 }
