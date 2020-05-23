@@ -19,9 +19,11 @@ class Board
 {
 	//tablica do gry w kolko i krzyzyk
 	std::vector<std::vector<char>> board;
+	int sign; //liczba znakow dajaca zwyciestwo
 public:
-	Board(int size)
+	Board(int size,int sign)
 	{
+		this->sign = sign;
 		for (int i = 0; i < size; i++)
 		{
 			this->board.push_back(std::vector<char>());
@@ -37,9 +39,9 @@ public:
 	int getSizeOfBoardRow(int);
 	char getElement(int, int);
 	void setElement(int, int, char);
-	int minimax(int depth, bool isMax, int alpha, int beta);
+	int minimax(int, bool, int, int);
 	Move findBestMove();
-	void playerMove(int row,int col);
+	void playerMove(int, int);
 	Move aiMove();
 };
 

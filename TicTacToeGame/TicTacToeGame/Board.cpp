@@ -36,33 +36,63 @@ int Board::check()
     //zmienne potrzeban do obslugi
     int playerWin = 0;
     int aiWin = 0;
-
+    int nextIndex = 0;
+    int previousIndex = 0;
     //sprawdzenie wierszow czy wygral gracz czy ai
     for (int row = 0; row < this->board.size(); row++)
     {
         //sprawdzamy czy w konketnym wierszu wygral gracz
         for (int j = 0; j < this->board[row].size(); j++)
         {
-            if (this->board[row][j] == 'x')
+            nextIndex = j + 1;
+            previousIndex = j - 1;
+            //sprawdzamy warunki koncowe
+            if (previousIndex == -1)
+            {
+                if (this->board[row][j] == 'x' && this->board[row][nextIndex] == 'x' && this->board[row][nextIndex+1] == 'x')
+                    playerWin++;
+            }
+            else if (nextIndex == board.size())
+            {
+                if(this->board[row][j] == 'x' && this->board[row][previousIndex] == 'x' && this->board[row][previousIndex-1] == 'x')
+                    playerWin++;
+            }
+            else if (this->board[row][j] == 'x' && (this->board[row][nextIndex] == 'x' || this->board[row][previousIndex] == 'x'))
                 playerWin++; // zlczamy pola rowne x
+       
         }
         //jesli jest tyle samo pol x co mozliwych wtedy wygral gracz
-        if (playerWin == this->board[row].size())
+        if (playerWin >= this->sign)
             return 10;
         //zerujemy dane dla konkretnego wiersza
         playerWin = 0;
-
+        nextIndex = 0;
+        previousIndex = 0;
         //sprawdzamy czy wygrala ai
         for (int j = 0; j < this->board[row].size(); j++)
         {
-            if (this->board[row][j] == 'o')
-                aiWin++;
+            nextIndex = j + 1;
+            previousIndex = j - 1;
+            if (previousIndex == -1)
+            {
+                if(this->board[row][j] == 'o' && this->board[row][nextIndex] == 'o' && this->board[row][nextIndex+1] == 'o')
+                    aiWin++;
+            }
+            else if (nextIndex == board.size())
+            {
+                if(this->board[row][j] == 'o' && this->board[row][previousIndex] == 'o' && this->board[row][previousIndex-1] == 'o')
+                    aiWin++;
+            }
+            else if (this->board[row][j] == 'o' && (this->board[row][nextIndex] == 'o' || this->board[row][previousIndex] == 'o'))
+                 aiWin++;
         }
         //jesli jest tyle samo pol o co mozliwych wtedy wygrala ai
-        if (aiWin == this->board[row].size())
+        if (aiWin >= this->sign)
             return -10;
         //zerujemy dane dla konkretnego wiersza dla ai    
         aiWin = 0;
+        nextIndex = 0;
+        previousIndex = 0;
     }
 
     //sprawdzamy kolumny czy wygral gracz czy ai
@@ -71,22 +101,50 @@ int Board::check()
         //sprawdzamy czy wygral gracz
         for (int j = 0; j < this->board[col].size(); j++)
         {
-            if (this->board[j][col] == 'x')
-                playerWin++;
+            nextIndex = j + 1;
+            previousIndex = j - 1;
+            //sprawdzamy warunek koncowy zeby nie wyjsc poza zakres 
+            if (previousIndex == -1)
+            {
+                if (this->board[j][col] == 'x' && this->board[nextIndex][col] == 'x' && this->board[nextIndex+1][col] == 'x')
+                    playerWin++;
+            }
+            else if (nextIndex == board.size())
+            {
+                if (this->board[j][col] == 'x' && this->board[previousIndex][col] == 'x' && this->board[previousIndex-1][col] == 'x')
+                    playerWin++;
+            }
+            else if (this->board[j][col] == 'x' && (this->board[nextIndex][col] == 'x' || this->board[previousIndex][col] == 'x'))
+               playerWin++;
         }
         //jesli jest tyle samo mozliwych pol wtedy wygrala ai
-        if (playerWin == this->board[col].size())
+        if (playerWin >= this->sign)
             return 10;
         //zerujemy dane dla konkretnej kolumny dla gracza    
         playerWin = 0;
+        nextIndex = 0;
+        previousIndex = 0;
 
         //sprawdzamy czy wygrala ai
         for (int j = 0; j < this->board[col].size(); j++)
-        {
-            if (this->board[j][col] == 'o')
-                aiWin++;
+        { 
+            nextIndex = j + 1;
+            previousIndex = j - 1;
+            //sprawdzamy warunek koncowy zeby nie wyjsc poza zakres 
+            if (previousIndex == -1)
+            {
+                if (this->board[j][col] == 'o' && this->board[nextIndex][col] == 'o' && this->board[nextIndex+1][col] == 'o')
+                    aiWin++;
+            }
+            else if (nextIndex == board.size())
+            {
+                if (this->board[j][col] == 'o' && this->board[previousIndex][col] == 'o' && this->board[previousIndex-1][col] == 'o')
+                    aiWin++;
+            }
+            else if (this->board[j][col] == 'o' && (this->board[nextIndex][col] == 'o' || this->board[previousIndex][col] == 'o'))
+                    aiWin++;
         }
-        if (aiWin == this->board[col].size())
+        if (aiWin >= this->sign)
             return -10;
         //zerujemy dane dla konkretnej kolumny dla ai   
         aiWin = 0;
@@ -95,19 +153,39 @@ int Board::check()
     //sprawdzamy w macierzy rzedy diagonalne czy wygral gracz czy ai
     for (int i = 0; i < this->board.size(); i++)
     {
-        if (this->board[i][i] == 'x')
+        //sprawdzamy warunek koncowy zeby nie wyjsc poza zakres 
+        nextIndex = i + 1;
+        previousIndex = i - 1;
+        //sprawdamy warunek poczatkowy zeby nie wyjsc poza zakres tablicy
+        if (previousIndex == -1)
+        {
+            if(this->board[i][i] == 'x' && this->board[nextIndex][nextIndex] == 'x' && this->board[nextIndex+1][nextIndex+1] == 'x')
+                playerWin++;
+            if(this->board[i][i] == 'o' && this->board[nextIndex][nextIndex] == 'o' && this->board[nextIndex+1][nextIndex+1] == 'o')
+                aiWin++;
+        }
+        else if (nextIndex == board.size())
+        {
+            if (this->board[i][i] == 'x' && this->board[previousIndex][previousIndex] == 'x' && this->board[previousIndex-1][previousIndex-1] == 'x')
+                playerWin++;
+            if (this->board[i][i] == 'o' && this->board[previousIndex][previousIndex] == 'o' && this->board[previousIndex-1][previousIndex-1] == 'o')
+                aiWin++;
+        }
+        else if (this->board[i][i] == 'x' && (this->board[nextIndex][nextIndex] == 'x' || this->board[previousIndex][previousIndex] == 'x'))
             playerWin++;
-        if (this->board[i][i] == 'o')
+        else if (this->board[i][i] == 'o' && (this->board[nextIndex][nextIndex] == 'o' || this->board[previousIndex][previousIndex] == 'o'))
             aiWin++;
     }
     //sprawdzamy czy wygral gracz
-    if (playerWin == this->board.size())
+    if (playerWin >= this->sign)
         return 10;
     //zerujemy dane dla konkretnej kolumny dla gracza    
     playerWin = 0;
+    nextIndex = 0;
+    previousIndex = 0;
 
     //sprawdzamy czy wygral ai    
-    if (aiWin == this->board.size())
+    if (aiWin == this->sign)
         return -10;
     //zerujemy dane dla konkretnej kolumny dla ai   
     aiWin = 0;
@@ -118,19 +196,39 @@ int Board::check()
     //sprawdzamy w macierzy rzedy diagonalne czy wygral gracz czy ai
     for (int i = 0; i < this->board.size(); i++)
     {
-        if (this->board[i][board.size() - (t++)] == 'x')
+        nextIndex = i + 1;
+        previousIndex = i - 1;
+        if (previousIndex == -1)
+        {
+            if(this->board[i][board.size() - (t)] == 'x' && this->board[nextIndex][board.size() - (t + 1)] == 'x' && this->board[nextIndex+1][board.size() - (t + 2)] == 'x')
+                playerWin++;
+            if(this->board[i][board.size() - (w)] == 'o' && this->board[nextIndex][board.size() - (w + 1)] == 'o' && this->board[nextIndex+1][board.size() - (w + 2)] == 'o')
+                aiWin++;
+        }
+        else if (nextIndex == board.size())
+        {
+            if (this->board[i][board.size() - (t)] == 'x' && this->board[previousIndex][board.size() - (t - 1)] == 'x' && this->board[previousIndex][board.size() - (t - 2)] == 'x')
+                playerWin++;
+            if (this->board[i][board.size() - (w)] == 'o' && this->board[previousIndex][board.size() - (w - 1)] == 'o' && this->board[previousIndex][board.size() - (w - 2)] == 'o')
+                aiWin++;
+        }
+        else if (this->board[i][board.size() - (t)] == 'x' && (this->board[nextIndex][board.size() - (t + 1)] == 'x' || this->board[previousIndex][board.size() - (t - 1)] == 'x'))
             playerWin++;
-        if (this->board[i][board.size() - (w++)] == 'o')
+        else if (this->board[i][board.size() - (w)] == 'o' && (this->board[nextIndex][board.size() - (w + 1)] == 'o' || this->board[previousIndex][board.size() - (w - 1)] == 'o'))
             aiWin++;
+        w++;
+        t++;
     }
     //sprawdzamy czy wygral gracz
-    if (playerWin == this->board.size())
+    if (playerWin >= this->sign)
         return 10;
     //zerujemy dane dla konkretnej kolumny dla gracza    
     playerWin = 0;
+    nextIndex = 0;
+    previousIndex = 0;
 
     //sprawdzamy czy wygral ai    
-    if (aiWin == this->board.size())
+    if (aiWin >= this->sign)
         return -10;
     //zerujemy dane dla konkretnej kolumny dla ai   
     aiWin = 0;

@@ -1,7 +1,7 @@
 #include "Game.h"
 
 //funkcja imitujaca gre w kolko i krzyzk
-void game(Board& board,int size)
+void game(Board& board, int size)
 {
     //tworzymy glowne okno gdzie bedzie wyswietlana gra TicTacToe
     sf::RenderWindow window; // zmienna 2D renderuje nam klase typu Render Window
@@ -42,58 +42,15 @@ void game(Board& board,int size)
     for(int i = 0; i < count; i++)
         sprite[i].setTexture(texture[i]);
 
-    int length = 0; //zmienna potrzebna do obslugi
-    //ustawiamy pozycje kwadratow
-    //ustawiamy pierwszy kwadrat
-    for (int i = 0; i < size; i++)
-    {
-        sprite[i].setPosition(100 * length, 0);
-        length++;
-    }
-    length = 0; //zerujemy length
-    //ustawiamy drugi wiersz
-    for (int i = 0; i < size; i++)
-    {
-        sprite[i+size].setPosition(100 * length, 100);
-        length++;
-    }
-    length = 0;
-    //ustawiamy trzeci wiersz
-    for (int i = 0; i < size; i++)
-    {
-        sprite[i+size*2].setPosition(100 * length, 200);
-        length++;
-    }
-    length = 0;
-    //jesli mamy tablice 4 na 4
-    //ustawiamy czwarty wiersz
-    if (size == 4)
+    //ustawiamy pozycje kwadratow na planszy
+    for (int j = 0; j < size; j++)
     {
         for (int i = 0; i < size; i++)
         {
-            sprite[i + size * 3].setPosition(100 * length, 300);
-            length++;
+            sprite[i+size*j].setPosition(100 * i, 100 * j);
         }
     }
-
-    //jesli mamy tablice 5 na 5
-    //ustawiamy czwarty i piaty wiersz
-    if (size == 5)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            sprite[i + size * 3].setPosition(100 * length, 300);
-            length++;
-        }
-        length = 0; //zerujemy length
-        for (int i = 0; i < size; i++)
-        {
-            sprite[i + size * 4].setPosition(100 * length, 400);
-            length++;
-        }
-    }
-
-    
+  
     //dopoki okno jest otwarte
     while (window.isOpen())
     {
@@ -106,248 +63,69 @@ void game(Board& board,int size)
             //klikamy myszka i wybieramy nasz ruch
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
             {
+                //pobieramy wspolrzedne od naszej myszy
                 xMouse = sf::Mouse::getPosition(window).x;
                 yMouse = sf::Mouse::getPosition(window).y;
+
+                //zmienne ktore beda ograniczac zakres myszki odpowednio dla wspolrzednych x i y
+                int borderx = 1;
+                int bordery = 1;
                 //sprawdzamy wszystkie mozliwosci wykonania naszego ruchu
-                //dla pierwszego wiersza
-                int border = 1;
-                for (int i = 0; i < size; i++)
+                for (int j = 0; j < size; j++)
                 {
-                    //jesli kliknelismy myszka w przwidzianym zakresie
-                    if (xMouse > i*100 && xMouse < border*100 && yMouse > 0 && yMouse < 100)
+                    for (int i = 0; i < size; i++)
                     {
-                        //jesli sa wolne miejsca na planszy gracz moze wykonac ruch
-                        if (board.isMovesLeft())
+                        //jesli kliknelismy myszka w przwidzianym zakresie ustaw nasz ruch
+                        if (xMouse > i * 100 && xMouse < borderx * 100 && yMouse > j*100 && yMouse < bordery *100)
                         {
-                            board.playerMove(0, i);
-                            board.printfBoard();
-                            std::cout << "----------" << std::endl;
-                            std::cout << "Ruch sztucznej inteligencji: " << std::endl;
-                            texturePlayer[i].loadFromFile("images/krzyzyk.png");
-                            std::cout << "Wcisnij enter aby sztuczna inteligencja wykonala ruch: " << std::endl;
-                            spritePlayer[i].setTexture(texturePlayer[i]);
-                            spritePlayer[i].setPosition(i*100, 0);
-                        }
-                        victory = board.check();
-                        if (victory == 10)
-                        {
-                            std::cout << "Brawo wygrales !!!" << std::endl;
-                            windowVictory.setActive(true); // ustaw focus na okno
-                            windowVictory.setFramerateLimit(60);
-                            textureWinner.loadFromFile("images/wygrana.png");
-                            spriteWinner.setTexture(textureWinner);
-                            spriteWinner.setPosition(0, 0);
-                            //wyswietlamy komunikat w nowym oknie
-                            while (windowVictory.isOpen())
+                            //jesli sa wolne miejsca na planszy gracz moze wykonac ruch
+                            if (board.isMovesLeft())
                             {
-                                while (windowVictory.pollEvent(event))
+                                board.playerMove(j, i); //ustaw nasz ruch na plnaszy
+                                board.printfBoard(); //wyswietl w konsoli komunikat z zaznaczonym ruchem
+                                std::cout << "----------" << std::endl;
+                                std::cout << "Ruch sztucznej inteligencji: " << std::endl;
+                                texturePlayer[i + size*j].loadFromFile("images/krzyzyk.png");
+                                std::cout << "Wcisnij enter aby sztuczna inteligencja wykonala ruch: " << std::endl;
+                                spritePlayer[i + j*size].setTexture(texturePlayer[i + j*size]);
+                                spritePlayer[i + j*size].setPosition(i * 100, j*100);
+                            }
+                            victory = board.check();
+                            //jest wykonany ruch jest zwyciezki wyswietl komunikat
+                            if (victory == 10)
+                            {
+                                std::cout << "Brawo wygrales !!!" << std::endl;
+                                windowVictory.create(sf::VideoMode(290, 135, 32), "Winner"); //okna ma wymiary 290 na 150
+                                windowVictory.setActive(true); // ustaw focus na okno
+                                windowVictory.setFramerateLimit(60);
+                                textureWinner.loadFromFile("images/wygrana.png");
+                                spriteWinner.setTexture(textureWinner);
+                                spriteWinner.setPosition(0, 0);
+                                //wyswietlamy komunikat w nowym oknie
+                                while (windowVictory.isOpen())
                                 {
-                                    //zakonczenie gry wcisnieciem escape lub zamknieciem okna
-                                    if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
+                                    while (windowVictory.pollEvent(event))
+                                    {
+                                        //zakonczenie gry wcisnieciem escape lub zamknieciem okna
+                                        if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
                                             windowVictory.close();
+                                    }
+                                    for (int i = 0; i < count; i++)
+                                        window.draw(spritePlayer[i]);
+                                    window.display();
                                     windowVictory.draw(spriteWinner);
+                                    windowVictory.display();
                                 }
-                                for (int i = 0; i < count; i++)
-                                    window.draw(spritePlayer[i]);
-                                window.display();
-                                windowVictory.draw(spriteWinner);
-                                windowVictory.display();
                             }
                         }
+                        borderx++; // zwiekszamy granice dla wspolrzednych x
                     }
-                    border++; // zwiekszamy granice
+                    borderx = 1; // ustawiamy granice znowu na 1
+                    bordery++; // zwiekszamy granice dla wspolrzednych y
                 }
-                border = 1; // ustawiamy granice znowu na 1
-                //sprawdzamy wiersz drugi
-                for (int i = 0; i < size; i++)
-                {
-                    if (xMouse > i * 100 && xMouse < border * 100 && yMouse > 100 && yMouse < 200)
-                    {
-                        //jesli sa wolne miejsca na planszy gracz moze wykonac ruch
-                        if (board.isMovesLeft())
-                        {
-                            board.playerMove(1, i);
-                            board.printfBoard();
-                            std::cout << "----------" << std::endl;
-                            std::cout << "Ruch sztucznej inteligencji: " << std::endl;
-                            std::cout << "Wcisnij enter aby sztuczna inteligencja wykonala ruch: " << std::endl;
-                            texturePlayer[i + size].loadFromFile("images/krzyzyk.png");
-                            spritePlayer[i + size].setTexture(texturePlayer[i + size]);
-                            spritePlayer[i + size].setPosition(i * 100, 100);
-                        }
-                        victory = board.check();
-                        if (victory == 10)
-                        {
-                            std::cout << "Brawo wygrales !!!" << std::endl;
-                            windowVictory.create(sf::VideoMode(290, 135, 32), "Winner"); //okna ma wymiary 290 na 150
-                            windowVictory.setActive(true); // ustaw focus na okno
-                            windowVictory.setFramerateLimit(60);
-                            textureWinner.loadFromFile("images/wygrana.png");
-                            spriteWinner.setTexture(textureWinner);
-                            spriteWinner.setPosition(0, 0);
-                            //wyswietlamy komunikat w nowym oknie
-                            while (windowVictory.isOpen())
-                            {
-                                while (windowVictory.pollEvent(event))
-                                {
-                                    //zakonczenie gry wcisnieciem escape lub zamknieciem okna
-                                    if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
-                                        windowVictory.close();
-                                }
-                                for (int i = 0; i < count; i++)
-                                    window.draw(spritePlayer[i]);
-                                window.display();
-                                windowVictory.draw(spriteWinner);
-                                windowVictory.display();
-                            }
-                        }
-                    }
-                    border++; // zwiekszamy granice
-                }
-                border = 1; // ustawiamy znowu granice
-                //sprawdzamy trzeci wiersz
-                for (int i = 0; i < size; i++)
-                {
-                    if (xMouse > i*100 && xMouse < border*100 && yMouse > 200 && yMouse < 300)
-                    {
-                        //jesli sa wolne miejsca na planszy gracz moze wykonac ruch
-                        if (board.isMovesLeft())
-                        {
-                            board.playerMove(2, i);
-                            board.printfBoard();
-                            std::cout << "----------" << std::endl;
-                            std::cout << "Ruch sztucznej inteligencji: " << std::endl;
-                            texturePlayer[i+size*2].loadFromFile("images/krzyzyk.png");
-                            spritePlayer[i + size * 2].setTexture(texturePlayer[i + size * 2]);
-                            spritePlayer[i + size * 2].setPosition(i*100, 200);
-                        }
-                        victory = board.check();
-                        if (victory == 10)
-                        {
-                            std::cout << "Brawo wygrales !!!" << std::endl;
-                            std::cout << "TU sie wswitli obrazek ze wygrales smieciu" << std::endl;
-                            windowVictory.create(sf::VideoMode(290, 135, 32), "Winner"); //okna ma wymiary 290 na 150
-                            windowVictory.setActive(true); // ustaw focus na okno
-                            windowVictory.setFramerateLimit(60);
-                            textureWinner.loadFromFile("images/wygrana.png");
-                            spriteWinner.setTexture(textureWinner);
-                            spriteWinner.setPosition(0, 0);
-                            //wyswietlamy komunikat w nowym oknie
-                            while (windowVictory.isOpen())
-                            {
-                                while (windowVictory.pollEvent(event))
-                                {
-                                    //zakonczenie gry wcisnieciem escape lub zamknieciem okna
-                                    if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
-                                        windowVictory.close();
-                                }
-                                for (int i = 0; i < count; i++)
-                                    window.draw(spritePlayer[i]);
-                                window.display();
-                                windowVictory.draw(spriteWinner);
-                                windowVictory.display();
-                            }
-                        }
-                    }
-                    border++;
-                }
-                border = 1; // ustawiamy wiersz na 
-                //jesli mamy plansze 4 x 4
-                //ustawiamy 4 wiersz
-                for (int i = 0; i < size; i++)
-                {
-                    if (xMouse > i * 100 && xMouse < border * 100 && yMouse > 300 && yMouse < 400)
-                    {
-                        //jesli sa wolne miejsca na planszy gracz moze wykonac ruch
-                        if (board.isMovesLeft())
-                        {
-                            board.playerMove(3, i);
-                            board.printfBoard();
-                            std::cout << "----------" << std::endl;
-                            std::cout << "Ruch sztucznej inteligencji: " << std::endl;
-                            std::cout << "Wcisnij enter aby sztuczna inteligencja wykona³a ruch: " << std::endl;
-                            texturePlayer[i + size * 3].loadFromFile("images/krzyzyk.png");
-                            spritePlayer[i + size * 3].setTexture(texturePlayer[i + size * 3]);
-                            spritePlayer[i + size * 3].setPosition(i * 100, 300);
-                        }
-                        victory = board.check();
-                        if (victory == 10)
-                        {
-                            std::cout << "Brawo wygrales !!!" << std::endl;
-                            windowVictory.create(sf::VideoMode(290, 135, 32), "Winner"); //okna ma wymiary 290 na 150
-                            windowVictory.setActive(true); // ustaw focus na okno
-                            windowVictory.setFramerateLimit(60);
-                            textureWinner.loadFromFile("images/wygrana.png");
-                            spriteWinner.setTexture(textureWinner);
-                            spriteWinner.setPosition(0, 0);
-                            //wyswietlamy komunikat w nowym oknie
-                            while (windowVictory.isOpen())
-                            {
-                                while (windowVictory.pollEvent(event))
-                                {
-                                    //zakonczenie gry wcisnieciem escape lub zamknieciem okna
-                                    if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
-                                        windowVictory.close();
-                                }
-                                for (int i = 0; i < count; i++)
-                                    window.draw(spritePlayer[i]);
-                                window.display();
-                                windowVictory.draw(spriteWinner);
-                                windowVictory.display();
-                            }
-                        }
-                    }
-                    border++;
-                }
-                border = 1; // ustawiamy wiersz na 
-                //jesli mamy plansze 5 x 5
-                //ustawiamy 5 wiersz
-                for (int i = 0; i < size; i++)
-                {
-                    if (xMouse > i * 100 && xMouse < border * 100 && yMouse > 400 && yMouse < 500)
-                    {
-                        //jesli sa wolne miejsca na planszy gracz moze wykonac ruch
-                        if (board.isMovesLeft())
-                        {
-                            board.playerMove(4, i);
-                            board.printfBoard();
-                            std::cout << "----------" << std::endl;
-                            std::cout << "Ruch sztucznej inteligencji: " << std::endl;
-                            std::cout << "Wcisnij enter aby sztuczna inteligencja wykona³a ruch: " << std::endl;
-                            texturePlayer[i + size * 4].loadFromFile("images/krzyzyk.png");
-                            spritePlayer[i + size * 4].setTexture(texturePlayer[i + size * 4]);
-                            spritePlayer[i + size * 4].setPosition(i * 100, 400);
-                        }
-                        victory = board.check();
-                        if (victory == 10)
-                        {
-                            std::cout << "Brawo wygrales !!!" << std::endl;
-                            windowVictory.create(sf::VideoMode(290, 135, 32), "Winner"); //okna ma wymiary 290 na 150
-                            windowVictory.setActive(true); // ustaw focus na okno
-                            windowVictory.setFramerateLimit(60);
-                            textureWinner.loadFromFile("images/wygrana.png");
-                            spriteWinner.setTexture(textureWinner);
-                            spriteWinner.setPosition(0, 0);
-                            //wyswietlamy komunikat w nowym oknie
-                            while (windowVictory.isOpen())
-                            {
-                                while (windowVictory.pollEvent(event))
-                                {
-                                    //zakonczenie gry wcisnieciem escape lub zamknieciem okna
-                                    if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
-                                        windowVictory.close();
-                                }
-                                for (int i = 0; i < count; i++)
-                                    window.draw(spritePlayer[i]);
-                                window.display();
-                                windowVictory.draw(spriteWinner);
-                                windowVictory.display();
-                            }
-                        }
-                    }
-                    border++;  
-                }
+                bordery = 1; 
                 victory = board.check();
+                //jesli mamy remis
                 if (victory == 0 && board.isMovesLeft() == false)
                 {
                     std::cout << "Remis!!!" << std::endl;
@@ -379,194 +157,45 @@ void game(Board& board,int size)
                 //jesli sa wolne miejsca na planszy to ai wykonuje ruch
                 if (board.isMovesLeft())
                 {
-                    aiMove = board.aiMove();
-                    board.printfBoard();
-                    //sprawdzamy pierwszy wiersz
-                    for (int i = 0; i < size; i++)
+                    aiMove = board.aiMove(); // wybieramy najlepszy ruch na planszy dla Ai
+                    board.printfBoard(); //deukujemy plansze po ruchu Ai
+                    //zaznaczamy ruch na plnaszy Ai
+                    for (int j = 0; j < size; j++)
                     {
-                        if (aiMove.row == i && aiMove.col == 0)
+                        for (int i = 0; i < size; i++)
                         {
-                            textureAi[i].loadFromFile("images/kolo.png");
-                            spriteAi[i].setTexture(textureAi[i]);
-                            spriteAi[i].setPosition(0, i*100);
-                            std::cout << "----------" << std::endl;
-                            std::cout << "Twoj ruch: " << std::endl;
-                            //jesli wygrala ai zakoncz rozgrywje
-                            victory = board.check();
-                            if (victory == -10)
+                            if (aiMove.row == i && aiMove.col == j)
                             {
-                                std::cout << "Przykro mi przegrales ze sztuczna inteligencja !!!" << std::endl;
-                                windowVictory.create(sf::VideoMode(290, 135, 32), "Winner"); //okna ma wymiary 290 na 150
-                                windowVictory.setActive(true); // ustaw focus na okno
-                                windowVictory.setFramerateLimit(60);
-                                textureWinner.loadFromFile("images/przegrana.png");
-                                spriteWinner.setTexture(textureWinner);
-                                spriteWinner.setPosition(0, 0);
-                                while (windowVictory.isOpen())
+                                textureAi[i + j*size].loadFromFile("images/kolo.png");
+                                spriteAi[i + j*size].setTexture(textureAi[i + j *size]);
+                                spriteAi[i + j*size].setPosition(j * 100, i * 100);
+                                std::cout << "----------" << std::endl;
+                                std::cout << "Twoj ruch: " << std::endl;
+                                //jesli wygrala ai zakoncz rozgrywke
+                                victory = board.check();
+                                if (victory == -10)
                                 {
-                                    while (windowVictory.pollEvent(event))
+                                    std::cout << "Przykro mi przegrales ze sztuczna inteligencja !!!" << std::endl;
+                                    windowVictory.create(sf::VideoMode(290, 135, 32), "Winner"); //okna ma wymiary 290 na 150
+                                    windowVictory.setActive(true); // ustaw focus na okno
+                                    windowVictory.setFramerateLimit(60);
+                                    textureWinner.loadFromFile("images/przegrana.png");
+                                    spriteWinner.setTexture(textureWinner);
+                                    spriteWinner.setPosition(0, 0);
+                                    while (windowVictory.isOpen())
                                     {
-                                        //zakonczenie gry wcisnieciem escape lub zamknieciem okna
-                                        if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
-                                            windowVictory.close();
+                                        while (windowVictory.pollEvent(event))
+                                        {
+                                            //zakonczenie gry wcisnieciem escape lub zamknieciem okna
+                                            if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
+                                                windowVictory.close();
+                                        }
+                                        for (int i = 0; i < count; i++)
+                                            window.draw(spriteAi[i]);
+                                        window.display();
+                                        windowVictory.draw(spriteWinner);
+                                        windowVictory.display();
                                     }
-                                    for (int i = 0; i < count; i++)
-                                        window.draw(spriteAi[i]);
-                                    window.display();
-                                    windowVictory.draw(spriteWinner);
-                                    windowVictory.display();
-                                }
-                            }
-                        }
-                    }
-                    //sprawdzamy drugi wiersz
-                    for (int i = 0; i < size; i++)
-                    {
-                        if (aiMove.row == i && aiMove.col == 1)
-                        {
-                            textureAi[i+size].loadFromFile("images/kolo.png");
-                            spriteAi[i+size].setTexture(textureAi[i+size]);
-                            spriteAi[i+size].setPosition(100, i*100);
-                            std::cout << "----------" << std::endl;
-                            std::cout << "Twoj ruch: " << std::endl;
-                            //jesli wygrala ai zakoncz rozgrywje
-                            victory = board.check();
-                            if (victory == -10)
-                            {
-                                std::cout << "Przykro mi przegrales ze sztuczna inteligencja !!!" << std::endl;
-                                windowVictory.create(sf::VideoMode(290, 135, 32), "Winner"); //okna ma wymiary 290 na 150
-                                windowVictory.setActive(true); // ustaw focus na okno
-                                windowVictory.setFramerateLimit(60);
-                                textureWinner.loadFromFile("images/przegrana.png");
-                                spriteWinner.setTexture(textureWinner);
-                                spriteWinner.setPosition(0, 0);
-                                while (windowVictory.isOpen())
-                                {
-                                    while (windowVictory.pollEvent(event))
-                                    {
-                                        //zakonczenie gry wcisnieciem escape lub zamknieciem okna
-                                        if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
-                                            windowVictory.close();
-                                    }
-                                    for (int i = 0; i < count; i++)
-                                        window.draw(spriteAi[i]);
-                                    window.display();
-                                    windowVictory.draw(spriteWinner);
-                                    windowVictory.display();
-                                }
-                            }
-                        }
-                    }
-                    //sprawdzamy trzeci wiersz
-                    for (int i = 0; i < size; i++)
-                    {
-                        if (aiMove.row == i && aiMove.col == 2)
-                        {
-                            textureAi[i+size*2].loadFromFile("images/kolo.png");
-                            spriteAi[i + size * 2].setTexture(textureAi[i + size * 2]);
-                            spriteAi[i + size * 2].setPosition(200, i*100);
-                            std::cout << "----------" << std::endl;
-                            std::cout << "Twoj ruch: " << std::endl;
-                            //jesli wygrala ai zakoncz rozgrywje
-                            victory = board.check();
-                            if (victory == -10)
-                            {
-                                std::cout << "Przykro mi przegrales ze sztuczna inteligencja !!!" << std::endl;
-                                windowVictory.create(sf::VideoMode(290, 135, 32), "Winner"); //okna ma wymiary 290 na 150
-                                windowVictory.setActive(true); // ustaw focus na okno
-                                windowVictory.setFramerateLimit(60);
-                                textureWinner.loadFromFile("images/przegrana.png");
-                                spriteWinner.setTexture(textureWinner);
-                                spriteWinner.setPosition(0, 0);
-                                while (windowVictory.isOpen())
-                                {
-                                    while (windowVictory.pollEvent(event))
-                                    {
-                                        //zakonczenie gry wcisnieciem escape lub zamknieciem okna
-                                        if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
-                                            windowVictory.close();
-                                    }
-                                    for (int i = 0; i < count; i++)
-                                        window.draw(spriteAi[i]);
-                                    window.display();
-                                    windowVictory.draw(spriteWinner);
-                                    windowVictory.display();
-                                }
-                            }
-                        }
-                    }
-                    //sprawdzamy 4 wiersz dla ai
-                    for (int i = 0; i < size; i++)
-                    {
-                        if (aiMove.row == i && aiMove.col == 3)
-                        {
-                            textureAi[i + size * 3].loadFromFile("images/kolo.png");
-                            spriteAi[i + size * 3].setTexture(textureAi[i + size * 3]);
-                            spriteAi[i + size * 3].setPosition(300, i * 100);
-                            std::cout << "----------" << std::endl;
-                            std::cout << "Twoj ruch: " << std::endl;
-                            //jesli wygrala ai zakoncz rozgrywje
-                            victory = board.check();
-                            if (victory == -10)
-                            {
-                                std::cout << "Przykro mi przegrales ze sztuczna inteligencja !!!" << std::endl;
-                                windowVictory.create(sf::VideoMode(280, 135, 32), "Winner"); //okna ma wymiary 290 na 150
-                                windowVictory.setActive(true); // ustaw focus na okno
-                                windowVictory.setFramerateLimit(60);
-                                textureWinner.loadFromFile("images/przegrana.png");
-                                spriteWinner.setTexture(textureWinner);
-                                spriteWinner.setPosition(0, 0);
-                                while (windowVictory.isOpen())
-                                {
-                                    while (windowVictory.pollEvent(event))
-                                    {
-                                        //zakonczenie gry wcisnieciem escape lub zamknieciem okna
-                                        if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
-                                            windowVictory.close();
-                                    }
-                                    for (int i = 0; i < count; i++)
-                                        window.draw(spriteAi[i]);
-                                    window.display();
-                                    windowVictory.draw(spriteWinner);
-                                    windowVictory.display();
-                                }
-                            }
-                        }                           
-                    }
-                    //sprawdzamy 5 wiersz dla ai
-                    for (int i = 0; i < size; i++)
-                    {
-                        if (aiMove.row == i && aiMove.col == 4)
-                        {
-                            textureAi[i + size * 4].loadFromFile("images/kolo.png");
-                            spriteAi[i + size * 4].setTexture(textureAi[i + size * 4]);
-                            spriteAi[i + size * 4].setPosition(400, i * 100);
-                            std::cout << "----------" << std::endl;
-                            std::cout << "Twoj ruch: " << std::endl;
-                            //jesli wygrala ai zakoncz rozgrywje
-                            victory = board.check();
-                            if (victory == -10)
-                            {
-                                std::cout << "Przykro mi przegrales ze sztuczna inteligencja !!!" << std::endl;
-                                windowVictory.create(sf::VideoMode(280, 135, 32), "Winner"); //okna ma wymiary 290 na 150
-                                windowVictory.setActive(true); // ustaw focus na okno
-                                windowVictory.setFramerateLimit(60);
-                                textureWinner.loadFromFile("images/przegrana.png");
-                                spriteWinner.setTexture(textureWinner);
-                                spriteWinner.setPosition(0, 0);
-                                while (windowVictory.isOpen())
-                                {
-                                    while (windowVictory.pollEvent(event))
-                                    {
-                                        //zakonczenie gry wcisnieciem escape lub zamknieciem okna
-                                        if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
-                                            windowVictory.close();
-                                    }
-                                    for (int i = 0; i < count; i++)
-                                        window.draw(spriteAi[i]);
-                                    window.display();
-                                    windowVictory.draw(spriteWinner);
-                                    windowVictory.display();
                                 }
                             }
                         }
