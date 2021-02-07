@@ -11,7 +11,7 @@ int main()
     std::cout << "Twoj wybor to: ";
     std::cin >> size;
     std::cin.ignore(100000, '\n');
-    std::cout << "Podaj ilosc symboli ktora daje zwyciestwo wrzedzie: ";
+    std::cout << "Podaj ilosc symboli ktora daje zwyciestwo w rzedzie: ";
     std::cin >> sign;
     std::cin.ignore(100000, '\n');
     Board board(size, sign);

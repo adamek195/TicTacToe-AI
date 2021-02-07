@@ -207,9 +207,9 @@ int Board::check()
         }
         else if (nextIndex == board.size())
         {
-            if (this->board[i][board.size() - (t)] == 'x' && this->board[previousIndex][board.size() - (t - 1)] == 'x' && this->board[previousIndex][board.size() - (t - 2)] == 'x')
+            if (this->board[i][board.size() - (t)] == 'x' && this->board[previousIndex][board.size() - (t - 1)] == 'x' && this->board[previousIndex-1][board.size() - (t - 2)] == 'x')
                 playerWin++;
-            if (this->board[i][board.size() - (w)] == 'o' && this->board[previousIndex][board.size() - (w - 1)] == 'o' && this->board[previousIndex][board.size() - (w - 2)] == 'o')
+            if (this->board[i][board.size() - (w)] == 'o' && this->board[previousIndex][board.size() - (w - 1)] == 'o' && this->board[previousIndex-1][board.size() - (w - 2)] == 'o')
                 aiWin++;
         }
         else if (this->board[i][board.size() - (t)] == 'x' && (this->board[nextIndex][board.size() - (t + 1)] == 'x' || this->board[previousIndex][board.size() - (t - 1)] == 'x'))
