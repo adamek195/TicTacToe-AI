@@ -106,7 +106,6 @@ StyleCopReport.xml
 *.pdb
 *.tlog
 *.lastbuildstate
-unsuccessfulbuild
 
 #files created by cpp compilator
 *.exe
