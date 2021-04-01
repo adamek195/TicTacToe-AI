@@ -99,6 +99,7 @@ StyleCopReport.xml
 
 #files created by SFML library
 Release/
+v16/
 *.suo
 *.db
 *.iptch

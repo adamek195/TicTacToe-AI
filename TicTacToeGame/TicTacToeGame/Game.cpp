@@ -17,7 +17,7 @@ void game(Board& board, int size)
     sf::Event event; // zmienna event ktora bedzie rejestrowac jakies wydarzenie myszki lub klawiatury
     sf::Texture textureWinner; // zmienna bedzie pokazywac zwyciezce
     sf::Texture *texture = new  sf::Texture[count]; //zmienne beda wczytywac kwadraty
-    sf::Texture *texturePlayer = new sf::Texture[count]; //zmienne beda wczytywac krzyzk gracza
+    sf::Texture *texturePlayer = new sf::Texture[count]; //zmienne beda wczytywac krzyzyk gracza
     sf::Texture *textureAi = new sf::Texture[count]; //zmienne beda wczytywac  gracza
 
     //tworzymy obiekty ktore beda sie wyswietlac na planszy
