@@ -97,6 +97,20 @@ StyleCopReport.xml
 *.svclog
 *.scc
 
+#files created by SFML library
+*.suo
+*.db
+*.iptch
+*.dll
+*.obj
+*.pdb
+*.tlog
+*.lastbuildstate
+unsuccessfulbuild
+
+#files created by cpp compilator
+*.exe
+
 # Chutzpah Test files
 _Chutzpah*
 
