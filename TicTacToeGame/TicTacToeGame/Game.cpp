@@ -4,10 +4,10 @@
 void game(Board& board, int size)
 {
     //tworzymy glowne okno gdzie bedzie wyswietlana gra TicTacToe
-    sf::RenderWindow window; // zmienna 2D renderuje nam klase typu Render Window
-    sf::RenderWindow windowVictory; // okno ktore bedzie wyswietlac o koncu gry
+    sf::RenderWindow window; //zmienna 2D renderuje nam klase typu Render Window
+    sf::RenderWindow windowVictory; //okno ktore bedzie wyswietlac o koncu gry
     window.create(sf::VideoMode(size*100, size*100, 32), "TicTacToe"); //okna ma wymiary 300 na 300
-    window.setActive(true); // ustaw focus na okno
+    window.setActive(true); //ustaw focus na okno
     window.setFramerateLimit(60);
 
     //zmienna wyswietli nam liczbe elemntow na planszy
