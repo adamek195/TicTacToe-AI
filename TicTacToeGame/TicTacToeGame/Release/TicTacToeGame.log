@@ -1,4 +1,43 @@
-﻿  Generating code
+﻿  Board.cpp
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(7,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(9,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(23,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(25,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(42,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(45,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(72,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(99,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(102,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(129,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(154,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(197,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(289,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(291,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(317,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(319,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(354,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(356,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(382,13): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Board.cpp(382,52): warning C4018: '<=': signed/unsigned mismatch
+  Game.cpp
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Game.cpp(50,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Game.cpp(50,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Game.cpp(67,56): warning C4244: '=': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Game.cpp(68,56): warning C4244: '=': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Game.cpp(91,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Game.cpp(91,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Game.cpp(171,77): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Adam\Documents\Studia\2_rok\IV_Semestr\PAMSI\Projekt3\TicTacToeGame\TicTacToeGame\Game.cpp(171,68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Main.cpp
+  Generating code
   Previous IPDB not found, fall back to full compilation.
   All 202 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
