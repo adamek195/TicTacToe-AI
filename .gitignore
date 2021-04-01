@@ -98,7 +98,7 @@ StyleCopReport.xml
 *.scc
 
 #files created by SFML library
-/Release/
+Release/
 *.suo
 *.db
 *.iptch
