@@ -98,14 +98,17 @@ StyleCopReport.xml
 *.scc
 
 #files created by SFML library
-*.suo
-*.db
-*.iptch
+/TicTacToeGame/
+.vs/TicTacToeGame/v16
 *.dll
+/Release/
 *.obj
 *.pdb
 *.tlog
-*.lastbuildstate
+/Debug/
+*.obj
+*.pdb
+*.tlog
 
 #files created by cpp compilator
 *.exe
