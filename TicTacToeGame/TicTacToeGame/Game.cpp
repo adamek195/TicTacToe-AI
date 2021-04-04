@@ -157,9 +157,9 @@ void game(Board& board, int size)
                 //jesli sa wolne miejsca na planszy to ai wykonuje ruch
                 if (board.isMovesLeft())
                 {
-                    aiMove = board.aiMove(); // wybieramy najlepszy ruch na planszy dla Ai
-                    board.printfBoard(); //deukujemy plansze po ruchu Ai
-                    //zaznaczamy ruch na plnaszy Ai
+                    aiMove = board.aiMove(); // wybieramy najlepszy ruch na planszy dla ai
+                    board.printfBoard(); //deukujemy plansze po ruchu ai
+                    //zaznaczamy ruch na plnaszy ai
                     for (int j = 0; j < size; j++)
                     {
                         for (int i = 0; i < size; i++)
